@@ -41,7 +41,9 @@ Scope for following is added into the code but It is not added into UI.
  for "The ability to choose board size and difficulty (number of mines)"
 
 # Installation
-Even though there is no 3rd party packge is used
+PHP 7.4
+
+Even though there is no 3rd party packge used
 ```bash
 composer install
 ```
@@ -54,7 +56,7 @@ http://localhost:8000
 
 
 # Author
-Name : Jahanzeb
+Jahanzeb
 Senior Software Engineer
 [LinkedIn](https://www.linkedin.com/in/jahanzeb-yasin/)
 
