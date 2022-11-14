@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Minesweeper</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<style>
+  .head {
+    text-align: center;
+  }
+  .cell-container {
+    text-align: center;
+  }
+  .grid {
+    width: auto;
+  }
+  .cell {
+    display: inline;
+    width: 45px;
+    height: 45px;
+  }
+
+  .cell input {
+    width: 30px;
+    height: 30px;
+  }
+
+  .cell input:disabled {
+    background-color:white;
+    text-decoration: solid;
+  }
+
+  .gameover {
+    color:red;
+  }
+
+  .winner {
+    color: green;
+  }
+
+  .actions {
+    text-align: center;
+  }
+
+</style>
+</head>
+<body>
+    <div class="head">
+      <h2>Minesweeper</h2>
+    </div>
+    <div id="canvas" class="cell-container" >
+
+    </div>
+    <div class="actions">
+    <input type="button" onclick="reset()" value="Reset" />
+    </div>
+  <script type="text/javascript">
+     $( document ).ready(function() {
+     //page is loaded then make an ajax call to server and get the preset grid
+     $.ajax({
+          method: "POST",
+          url: "http://localhost:8000/index.php?method=create",
+          data: { n: 10, m: 10 }
+      })
+      .done(function( data ) {
+          $('#canvas').html(data);
+      });
+    });
+
+    function autoPost(x,y) {
+      $.ajax({
+          method: "POST",
+          url: "http://localhost:8000/index.php?method=record",
+          data: { x: x, y: y }
+      })
+      .done(function( data ) {
+          $('#canvas').html(data);
+      });
+    }
+
+    function reset() {
+      $.ajax({
+          method: "POST",
+          url: "http://localhost:8000/index.php?method=reset",
+          data: { n: 10, m: 10 }
+      })
+      .done(function( data ) {
+          $('#canvas').html(data);
+      });
+    }
+
+   </script>
+</body>
+</html>
